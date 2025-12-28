@@ -1,25 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
 
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Home Page
+ * Design Philosophy: Modern 3D Maximalism
+ * - Premium portfolio landing page for Christopher Nemala
+ * - Fixed navigation with social links
+ * - Hero section with 3D graphics and smooth animations
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
 
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+      <Navigation />
+      <HeroSection />
     </div>
   );
 }
