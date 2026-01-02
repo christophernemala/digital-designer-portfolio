@@ -174,31 +174,21 @@ export default function HeroSection() {
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-[52px] leading-[1.08] text-bone"
-              style={{ fontWeight: 600 }}
+              className="mt-8 font-sans text-[66px] leading-[0.95] font-[950] tracking-[-1.4px] text-white"
             >
-              Finance reporting and controls for{' '}
-              <span className="relative inline-block">
-                <span className="text-electric electric-glow">large real estate portfolios</span>
-                {/* Gold Accent Underline */}
-                <motion.span
-                  className="absolute left-0 right-0 -bottom-1 h-[10px] bg-gold/30 -z-10 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                />
-              </span>
-              {' '}and community management.
+              Finance reporting and receivables control for{" "}
+              <span className="text-[#4F7DFF]">large real estate portfolios</span>{" "}
+              and community management.
             </motion.h1>
 
             {/* Subheadline */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-bone/70 max-w-xl leading-relaxed"
+              className="mt-7 text-[20px] leading-[1.75] text-white/75 max-w-[680px]"
             >
-              Oracle Fusion subledger governance, AR aging, DSO and 90+ risk, and IFRS 9 ECL 
-              assessment reporting. Excel and Power BI delivery with clean templates, drilldowns, 
-              and audit-ready narratives.
+              Oracle Fusion subledger governance, AR aging, credit control, DSO, 90 plus risk,
+              and IFRS 9 ECL reporting. Excel and Power BI systems built for executive visibility,
+              audit readiness, and faster decisions.
             </motion.p>
 
             {/* CTA Buttons */}

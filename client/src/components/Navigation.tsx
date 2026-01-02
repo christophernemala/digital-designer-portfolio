@@ -3,11 +3,7 @@ import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 /**
  * Navigation Component
- * LOCKED PALETTE: Blue Gold White Black Only
- * - ink background with gold border
- * - bone text with electric active state
- * - gold hover effects
- * - Enhanced motion effects and typography
+ * Updated with larger name, designation, and location block
  */
 
 export default function Navigation() {
@@ -31,7 +27,7 @@ export default function Navigation() {
     },
   };
 
-  // Slide-up with spring animation for nav items
+  // Slide-up animation for nav items
   const navItemVariants = {
     hidden: { opacity: 0, y: -15 },
     visible: {
@@ -61,85 +57,92 @@ export default function Navigation() {
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 z-50 h-20 bg-ink border-b border-gold/20 backdrop-blur-xl"
+      className="fixed top-0 left-0 right-0 z-50 bg-ink border-b border-gold/20 backdrop-blur-xl py-4"
     >
-      <div className="container h-full flex items-center justify-between">
-        {/* Logo - Enhanced typography */}
+      <div className="container flex items-start justify-between">
+        {/* Name Block - Large with designation and location */}
         <motion.a
           href="#home"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          whileHover={{ 
-            scale: 1.03,
-            textShadow: "0 0 20px rgba(200, 169, 81, 0.5)",
-          }}
-          whileTap={{ scale: 0.98 }}
-          className="text-[22px] font-bold text-gold bloom cursor-pointer tracking-tight"
-          style={{ fontWeight: 700, letterSpacing: '-0.02em' }}
+          className="cursor-pointer"
         >
-          Christopher Nemala
+          <div className="leading-tight">
+            <div className="font-sans text-[32px] font-[900] tracking-[-0.6px] text-[#D6B15A]">
+              Christopher Nemala
+            </div>
+            <div className="mt-1 font-sans text-[16px] font-[700] text-white/80">
+              Senior Executive – Credit Control, Accounts Receivable and Order to Cash
+            </div>
+            <div className="mt-1 font-sans text-[14px] font-[600] text-white/60">
+              Dubai, United Arab Emirates
+            </div>
+          </div>
         </motion.a>
 
-        {/* Center Navigation Links - Enhanced motion */}
-        <motion.div 
-          className="hidden md:flex gap-10"
-          variants={navContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {navItems.map((item, idx) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              variants={navItemVariants}
-              whileHover={{ 
-                color: '#C8A951',
-                y: -2,
-                transition: { duration: 0.2 },
-              }}
-              whileTap={{ scale: 0.95 }}
-              className={`text-[15px] font-medium transition-colors ${
-                idx === 0 ? 'text-electric' : 'text-bone/70 hover:text-gold'
-              }`}
-              style={{ fontWeight: 500 }}
-            >
-              {item}
-            </motion.a>
-          ))}
-        </motion.div>
-
-        {/* Social Icons - Enhanced motion */}
-        <motion.div 
-          className="flex gap-5"
-          variants={navContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {socialLinks.map((social) => {
-            const Icon = social.icon;
-            return (
+        {/* Right side - Nav links and social icons */}
+        <div className="flex items-center gap-12">
+          {/* Navigation Links */}
+          <motion.div 
+            className="hidden md:flex gap-10"
+            variants={navContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {navItems.map((item, idx) => (
               <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={socialIconVariants}
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                variants={navItemVariants}
                 whileHover={{ 
-                  scale: 1.25,
                   color: '#C8A951',
-                  rotate: 5,
+                  y: -2,
                   transition: { duration: 0.2 },
                 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-bone/60 hover:text-gold transition-colors"
-                aria-label={social.label}
+                whileTap={{ scale: 0.95 }}
+                className={`text-[15px] font-medium transition-colors ${
+                  idx === 0 ? 'text-electric' : 'text-bone/70 hover:text-gold'
+                }`}
+                style={{ fontWeight: 500 }}
               >
-                <Icon size={20} strokeWidth={1.8} />
+                {item}
               </motion.a>
-            );
-          })}
-        </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Social Icons */}
+          <motion.div 
+            className="flex gap-5"
+            variants={navContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={socialIconVariants}
+                  whileHover={{ 
+                    scale: 1.25,
+                    color: '#C8A951',
+                    rotate: 5,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  className="text-bone/60 hover:text-gold transition-colors"
+                  aria-label={social.label}
+                >
+                  <Icon size={20} strokeWidth={1.8} />
+                </motion.a>
+              );
+            })}
+          </motion.div>
+        </div>
       </div>
     </motion.nav>
   );
