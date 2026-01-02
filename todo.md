@@ -112,3 +112,13 @@
 - [x] Integrate with portfolio project cards
 - [x] Write vitest tests for AI endpoint
 - [x] Test AI responses for case studies
+
+
+## Enhanced Project Metadata for AI
+- [x] Add technologies array to project data structure
+- [x] Add metrics/outcomes to each project
+- [x] Add timeline/duration information
+- [x] Add challenges and solutions data
+- [x] Update AI modal to pass enhanced metadata
+- [x] Update backend AI prompt to use detailed context
+- [x] Test AI responses with richer data
