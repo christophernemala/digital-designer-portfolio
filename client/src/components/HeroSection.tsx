@@ -1,180 +1,273 @@
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 /**
  * Hero Section Component
- * Design Philosophy: Modern 3D Maximalism
- * Exact specifications from HeaderPortfolioPrompt
+ * Dark Cinematic Finance Tech Aesthetic
+ * - 50/50 split layout
+ * - Ultra-smooth anime-inspired animations
+ * - Glassmorphism and volumetric effects
+ * - Layered parallax depth
  */
 
 export default function HeroSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
+
+  const floatingVariants = {
+    initial: { y: 0, opacity: 0 },
+    animate: {
+      y: [0, -20, 0],
+      opacity: 1,
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+      },
+    },
+  };
+
+  const rotatingVariants = {
+    animate: {
+      rotate: 360,
+      transition: {
+        duration: 20,
+        repeat: Infinity,
+      },
+    },
+  };
+
   return (
-    <section className="w-full min-h-[calc(100vh-80px)] mt-20 bg-gradient-to-br from-purple-100 to-pink-50 px-60 grid grid-cols-2 items-center gap-20 relative overflow-hidden">
-      {/* Decorative Sparkles - Top Right */}
-      <motion.div
-        initial={{ opacity: 0, rotate: 0 }}
-        animate={{ opacity: 1, rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-[15%] right-[12%] w-16 h-16 z-10"
-      >
-        <svg viewBox="0 0 64 64" className="w-full h-full">
-          <path
-            d="M32 8 L34 28 L54 30 L34 32 L32 52 L30 32 L10 30 L30 28 Z"
-            fill="none"
-            stroke="black"
-            strokeWidth="2"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Small Sparkle */}
-      <motion.div
-        initial={{ opacity: 0, rotate: 0 }}
-        animate={{ opacity: 1, rotate: -360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-[18%] right-[9%] w-10 h-10 z-10"
-      >
-        <svg viewBox="0 0 64 64" className="w-full h-full">
-          <path
-            d="M32 12 L34 24 L46 26 L34 28 L32 40 L30 28 L18 26 L30 24 Z"
-            fill="none"
-            stroke="black"
-            strokeWidth="2"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Decorative Wavy Lines - Bottom Right */}
-      <motion.svg
-        initial={{ opacity: 0, x: 0 }}
-        animate={{ opacity: 1, x: [-5, 5, -5] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-[25%] right-[8%] w-24 h-10 z-10"
-        viewBox="0 0 100 40"
-      >
-        <path d="M0 8 Q25 4, 50 8 T100 8" fill="none" stroke="black" strokeWidth="2" />
-        <path d="M0 20 Q25 16, 50 20 T100 20" fill="none" stroke="black" strokeWidth="2" />
-        <path d="M0 32 Q25 28, 50 32 T100 32" fill="none" stroke="black" strokeWidth="2" />
-      </motion.svg>
-
-      {/* Left Column - Text Content */}
-      <div className="flex flex-col items-start justify-center z-20">
-        {/* Greeting Badge */}
+    <section className="relative w-full h-screen pt-20 overflow-hidden bg-gradient-to-br from-background via-background to-card">
+      {/* Volumetric Light Background */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="inline-block bg-white border-2 border-black rounded-full px-5 py-2 mb-8"
-        >
-          <span className="text-sm font-semibold text-black">✱ HELLO!</span>
-        </motion.div>
-
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-7xl font-bold text-black leading-tight mb-7"
-          style={{ letterSpacing: '-1px' }}
-        >
-          I'm Christopher Nemala,
-          <br />
-          <span className="relative inline-block">
-            a product designer.
-            {/* Hand-drawn underline */}
-            <motion.svg
-              initial={{ strokeDasharray: 400, strokeDashoffset: 400 }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: 2, delay: 0.8 }}
-              className="absolute bottom-1 left-0 w-full h-1"
-              viewBox="0 0 400 16"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0 12 Q100 8, 200 10 T400 12"
-                fill="none"
-                stroke="#6366F1"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </motion.svg>
-          </span>
-        </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-lg text-gray-700 max-w-md mb-9 leading-relaxed"
-        >
-          I'm a freelance product designer based in London. I'm very passionate about the work that I do.
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.button
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          whileHover={{ backgroundColor: '#000000', color: '#FFFFFF', y: -2 }}
-          className="px-8 py-4 border-2 border-black rounded-lg font-semibold text-black bg-transparent hover:bg-black hover:text-white transition-all duration-300 cursor-pointer"
-        >
-          See My Works
-        </motion.button>
+          className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(91, 141, 239, 0.4) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+              }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(91, 141, 239, 0.3) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.25, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+          }}
+        />
       </div>
 
-      {/* Right Column - Portrait */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        className="flex items-center justify-center relative z-20"
-      >
-        {/* Portrait Container */}
-        <div className="relative w-[520px] h-[600px]">
-          {/* Circular Badge */}
+      {/* Main Content Grid */}
+      <div className="container relative z-10 h-full flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+          {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, rotate: -20, scale: 0.8 }}
-            animate={{ opacity: 1, rotate: -8, scale: 1 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.8,
-              type: 'spring',
-              stiffness: 100,
-            }}
-            className="absolute top-[12%] left-[-8%] w-[140px] h-[140px] bg-white border-3 border-black rounded-full flex items-center justify-center shadow-lg z-10"
-            style={{ transform: 'rotate(-8deg)' }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
           >
-            <svg
-              width="140"
-              height="140"
-              viewBox="0 0 140 140"
-              className="absolute"
-              style={{ transform: 'rotate(-90deg)' }}
+            {/* Greeting Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-block"
             >
-              <defs>
-                <path
-                  id="circlePath"
-                  d="M 70, 70 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
-                  fill="none"
-                />
-              </defs>
-              <text fontSize="11" fontWeight="700" letterSpacing="1.5" fill="black">
-                <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
-                  AVAILABLE FOR FREELANCE ★
-                </textPath>
-              </text>
-            </svg>
+              <div className="glass px-4 py-2 w-fit rounded-full border border-accent/30 backdrop-blur-md">
+                <span className="text-accent text-sm font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  Welcome to Finance Intelligence
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl md:text-6xl font-bold leading-tight text-foreground"
+            >
+              Finance intelligence for{' '}
+              <span className="relative inline-block">
+                <span className="text-accent bloom">complex real estate</span>
+                <motion.svg
+                  className="absolute -bottom-2 left-0 w-full h-3"
+                  viewBox="0 0 300 20"
+                  preserveAspectRatio="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5 }}
+                >
+                  <path
+                    d="M 0 10 Q 75 0, 150 10 T 300 10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    className="text-accent"
+                  />
+                </motion.svg>
+              </span>
+              {' '}ecosystems
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              variants={itemVariants}
+              className="text-lg text-foreground/70 max-w-md leading-relaxed"
+            >
+              Transforming receivables, risk, and reporting into structured automated control.
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div
+              variants={itemVariants}
+              className="pt-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(91, 141, 239, 0.5)' }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-accent text-background font-semibold rounded-lg flex items-center gap-3 hover:gap-4 transition-all bloom"
+              >
+                View Portfolio
+                <ArrowRight size={20} />
+              </motion.button>
+            </motion.div>
           </motion.div>
 
-          {/* Portrait Image Container */}
-          <div className="w-full h-full rounded-t-[260px] rounded-b-xl overflow-hidden bg-gradient-to-b from-purple-400 to-purple-500 shadow-2xl">
-            <img
-              src="/images/portrait-bg-gradient.png"
-              alt="Christopher Nemala"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {/* Right Content - Portrait Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="relative h-full flex items-center justify-center"
+          >
+            {/* Animated Circular Badge */}
+            <motion.div
+              variants={rotatingVariants}
+              animate="animate"
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <svg
+                className="w-80 h-80 text-accent/30"
+                viewBox="0 0 300 300"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+              >
+                <circle cx="150" cy="150" r="140" />
+              </svg>
+            </motion.div>
+
+            {/* Circular Text Badge */}
+            <motion.div
+              className="absolute w-64 h-64 flex items-center justify-center"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+            >
+              <svg
+                className="w-full h-full"
+                viewBox="0 0 300 300"
+                fill="none"
+              >
+                <defs>
+                  <path
+                    id="circlePath"
+                    d="M 150, 150 m -120, 0 a 120,120 0 0,1 240,0 a 120,120 0 0,1 -240,0"
+                    fill="none"
+                  />
+                </defs>
+                <text
+                  fontSize="16"
+                  fontWeight="bold"
+                  fill="currentColor"
+                  className="text-accent/60"
+                >
+                  <textPath href="#circlePath" startOffset="0%" textAnchor="start">
+                    REAL ESTATE FINANCE • RECEIVABLES INTELLIGENCE •
+                  </textPath>
+                </text>
+              </svg>
+            </motion.div>
+
+            {/* Center Icon */}
+            <motion.div
+              className="relative z-10 glass p-8 rounded-2xl border border-accent/30 backdrop-blur-md"
+              whileHover={{ scale: 1.05 }}
+              variants={floatingVariants}
+              initial="initial"
+              animate="animate"
+            >
+              <ArrowRight size={48} className="text-accent bloom" />
+            </motion.div>
+
+            {/* Decorative Sparkles */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-accent rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.3, 1, 0.3],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </motion.div>
         </div>
+      </div>
+
+      {/* Animated Wave Divider */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-32 opacity-10"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      >
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="w-full h-full"
+          fill="currentColor"
+        >
+          <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" className="text-accent/10" />
+        </svg>
       </motion.div>
     </section>
   );
