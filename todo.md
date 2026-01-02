@@ -122,3 +122,14 @@
 - [x] Update AI modal to pass enhanced metadata
 - [x] Update backend AI prompt to use detailed context
 - [x] Test AI responses with richer data
+
+
+## Services Section Feature
+- [x] Create Services section component with 4 service cards
+- [x] Add AR Audit service card with description
+- [x] Add Dashboard Build service card
+- [x] Add IFRS 9 ECL Reporting service card
+- [x] Add Automation & AI Workflow service card
+- [x] Integrate Services section into Home page
+- [x] Add smooth scroll navigation to Services section
+- [x] Test Services section rendering and interactions

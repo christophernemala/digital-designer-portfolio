@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import PortfolioSection from '@/components/PortfolioSection';
+import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -25,6 +26,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <PortfolioSection />
+      <ServicesSection />
       <AboutSection />
       <Footer />
     </div>
