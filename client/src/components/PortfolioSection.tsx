@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, BarChart3, FileSpreadsheet, TrendingUp, Users } from 'lucide-react';
+import { ArrowUpRight, BarChart3, FileSpreadsheet, TrendingUp, Users, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import AIAssistantModal from './AIAssistantModal';
 
 /**
  * Portfolio Section Component
- * Interactive project cards with parallax and motion effects
+ * Interactive project cards with AI-powered explanations
  * LOCKED PALETTE: Blue Gold White Black Only
  */
 
@@ -51,7 +53,13 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  onAIClick: (project: Project) => void;
+}
+
+function ProjectCard({ project, index, onAIClick }: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -59,7 +67,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative glass rounded-2xl border border-gold/20 overflow-hidden cursor-pointer"
+      className="group relative glass rounded-2xl border border-gold/20 overflow-hidden"
     >
       {/* Hover glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-electric/5 to-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -70,12 +78,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-ink transition-all duration-300">
             {project.icon}
           </div>
-          <motion.div
-            className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold/50 group-hover:text-gold group-hover:border-gold transition-all"
-            whileHover={{ rotate: 45 }}
-          >
-            <ArrowUpRight size={18} />
-          </motion.div>
+          <div className="flex items-center gap-2">
+            {/* AI Explain Button */}
+            <motion.button
+              onClick={() => onAIClick(project)}
+              className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold/50 hover:text-gold hover:border-gold hover:bg-gold/10 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              title="Ask AI about this project"
+            >
+              <Sparkles size={16} />
+            </motion.button>
+            <motion.div
+              className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold/50 group-hover:text-gold group-hover:border-gold transition-all cursor-pointer"
+              whileHover={{ rotate: 45 }}
+            >
+              <ArrowUpRight size={18} />
+            </motion.div>
+          </div>
         </div>
 
         {/* Category Badge */}
@@ -104,6 +124,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </span>
           ))}
         </div>
+
+        {/* AI Badge */}
+        <motion.button
+          onClick={() => onAIClick(project)}
+          className="mt-6 w-full py-3 flex items-center justify-center gap-2 text-sm font-medium text-gold/70 bg-gold/5 border border-gold/20 rounded-xl hover:bg-gold/10 hover:text-gold hover:border-gold/40 transition-all"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Sparkles size={14} />
+          Ask AI about this project
+        </motion.button>
       </div>
 
       {/* Bottom accent line */}
@@ -113,6 +144,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function PortfolioSection() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAIClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   return (
     <section id="portfolio" className="relative py-24 bg-ink overflow-hidden">
       {/* Background decoration */}
@@ -150,12 +194,21 @@ export default function PortfolioSection() {
             Real-world finance reporting solutions for real estate portfolios, 
             community management, and enterprise AR operations.
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/30 rounded-full">
+            <Sparkles size={14} className="text-gold" />
+            <span className="text-sm text-gold/80">AI-powered project explanations available</span>
+          </div>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              index={index} 
+              onAIClick={handleAIClick}
+            />
           ))}
         </div>
 
@@ -178,6 +231,13 @@ export default function PortfolioSection() {
           </motion.a>
         </motion.div>
       </div>
+
+      {/* AI Assistant Modal */}
+      <AIAssistantModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        project={selectedProject}
+      />
     </section>
   );
 }

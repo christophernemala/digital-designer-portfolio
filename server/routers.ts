@@ -53,6 +53,81 @@ export const appRouter = router({
       }),
   }),
 
+  ai: router({
+    // AI Portfolio Assistant - explains case studies in detail
+    explainProject: publicProcedure
+      .input(
+        z.object({
+          projectTitle: z.string(),
+          projectDescription: z.string(),
+          projectCategory: z.string(),
+          question: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const apiKey = process.env.OPENAI_API_KEY;
+        if (!apiKey) {
+          throw new Error('OpenAI API key not configured');
+        }
+
+        const systemPrompt = `You are Christopher Nemala's AI Portfolio Assistant. Christopher is a Senior Executive specializing in Credit Control, Accounts Receivable, and Order to Cash for large real estate portfolios in Dubai, UAE.
+
+Your role is to explain his portfolio projects in detail to potential clients and employers. Be professional, knowledgeable, and highlight the business value and technical expertise demonstrated in each project.
+
+Key areas of expertise:
+- Oracle Fusion subledger governance
+- AR aging and credit control
+- DSO optimization
+- 90+ day risk management
+- IFRS 9 ECL reporting
+- Excel and Power BI systems
+- Executive visibility dashboards
+- Audit readiness
+
+Keep responses concise but informative (2-3 paragraphs max). Focus on business impact and measurable outcomes.`;
+
+        const userMessage = input.question 
+          ? `Project: ${input.projectTitle}\nCategory: ${input.projectCategory}\nDescription: ${input.projectDescription}\n\nVisitor Question: ${input.question}`
+          : `Please explain this project in detail:\n\nProject: ${input.projectTitle}\nCategory: ${input.projectCategory}\nDescription: ${input.projectDescription}\n\nProvide a professional explanation of what this project involved, the challenges addressed, and the business value delivered.`;
+
+        try {
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+              model: 'gpt-4o-mini',
+              messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userMessage },
+              ],
+              max_tokens: 500,
+              temperature: 0.7,
+            }),
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error?.message || 'OpenAI API error');
+          }
+
+          const data = await response.json();
+          const explanation = data.choices[0]?.message?.content || 'Unable to generate explanation.';
+
+          return { 
+            success: true, 
+            explanation,
+            projectTitle: input.projectTitle,
+          };
+        } catch (error) {
+          console.error('AI explanation error:', error);
+          throw new Error('Failed to generate AI explanation');
+        }
+      }),
+  }),
+
   portfolio: router({
     // Upload a file to portfolio project
     uploadFile: protectedProcedure

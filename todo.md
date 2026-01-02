@@ -103,3 +103,12 @@
 - [x] Update Hero headline with new text and 66px font size
 - [x] Update Hero subheadline with new text and styling
 - [x] Apply exact Tailwind classes as specified
+
+
+## AI Portfolio Assistant Integration
+- [x] Add OpenAI API key securely via webdev_request_secrets
+- [x] Create backend tRPC procedure for AI explanations
+- [x] Build AI assistant modal component
+- [x] Integrate with portfolio project cards
+- [x] Write vitest tests for AI endpoint
+- [x] Test AI responses for case studies
