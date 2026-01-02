@@ -1,14 +1,14 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import Footer from '@/components/Footer';
 import { useAuth } from "@/_core/hooks/useAuth";
 
 /**
  * Home Page
- * Design Philosophy: Modern 3D Maximalism
- * - Premium portfolio landing page for Christopher Nemala
- * - Fixed navigation with social links
- * - Hero section with 3D graphics and smooth animations
- * - Integrated with full-stack authentication
+ * LOCKED PALETTE: Blue Gold White Black Only
+ * - ink background (near black)
+ * - bone text (near white)
+ * - gold and electric accents
  */
 
 export default function Home() {
@@ -16,9 +16,10 @@ export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+    <div className="min-h-screen bg-ink text-bone">
       <Navigation />
       <HeroSection />
+      <Footer />
     </div>
   );
 }

@@ -55,3 +55,24 @@
 - [x] Create final checkpoint
 - [x] Verify all features working
 - [x] Prepare for publishing
+
+## Contact Form & Lead Generation
+- [x] Create leads database table for storing contact submissions
+- [x] Push database schema migration
+- [x] Create Footer component with contact form
+- [x] Implement glassmorphism styling matching site theme
+- [x] Add form fields: name, email, company, message
+- [x] Create tRPC procedure for lead submission
+- [x] Integrate owner notification on new lead
+- [x] Add form validation and success/error states
+- [x] Write vitest tests for lead submission
+- [x] Update Home page to include Footer component
+
+## Color Palette Lock - Blue Gold White Black Only
+- [x] Update index.css with locked palette (ink, midnight, royal, electric, gold, bone)
+- [x] Remove all purple, indigo, lavender, gray colors
+- [x] Update Navigation component with new colors
+- [x] Update HeroSection component with new colors
+- [x] Update Footer component with new colors
+- [x] Update Home page background
+- [x] Verify all components use only locked palette

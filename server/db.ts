@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, portfolioProjects, portfolioFiles, InsertPortfolioProject, InsertPortfolioFile } from "../drizzle/schema";
+import { InsertUser, users, portfolioProjects, portfolioFiles, InsertPortfolioProject, InsertPortfolioFile, contactLeads, InsertContactLead } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -128,6 +128,16 @@ export async function uploadPortfolioFile(
     userId,
     projectId,
   });
+}
+
+/**
+ * Contact Leads Queries
+ */
+export async function createContactLead(data: InsertContactLead) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  
+  return db.insert(contactLeads).values(data);
 }
 
 // TODO: add feature queries here as your schema grows.

@@ -3,10 +3,10 @@ import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 /**
  * Navigation Component
- * Dark Cinematic Finance Tech Aesthetic
- * - Fixed top with glassmorphism effect
- * - Dark background with electric blue accents
- * - Smooth anime-inspired animations
+ * LOCKED PALETTE: Blue Gold White Black Only
+ * - ink background with gold border
+ * - bone text with electric active state
+ * - gold hover effects
  */
 
 export default function Navigation() {
@@ -22,14 +22,14 @@ export default function Navigation() {
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 h-20 glass border-b border-white/10 backdrop-blur-xl"
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 left-0 right-0 z-50 h-20 bg-ink border-b border-gold/20 backdrop-blur-xl"
     >
       <div className="container h-full flex items-center justify-between">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="text-xl font-bold text-accent bloom cursor-pointer"
+          className="text-xl font-bold text-gold bloom cursor-pointer"
         >
           Christopher Nemala
         </motion.div>
@@ -44,10 +44,12 @@ export default function Navigation() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1, duration: 0.4 }}
               whileHover={{ 
-                color: '#5B8DEF',
+                color: '#C8A951',
                 scale: 1.05,
               }}
-              className="text-foreground/70 hover:text-accent transition-all text-sm font-medium"
+              className={`text-sm font-medium transition-all ${
+                idx === 0 ? 'text-electric' : 'text-bone/70 hover:text-gold'
+              }`}
             >
               {item}
             </motion.a>
@@ -69,11 +71,10 @@ export default function Navigation() {
                 transition={{ delay: idx * 0.1, duration: 0.4 }}
                 whileHover={{ 
                   scale: 1.2,
-                  color: '#5B8DEF',
-                  filter: 'drop-shadow(0 0 8px rgba(91, 141, 239, 0.5))',
+                  color: '#C8A951',
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-foreground/60 hover:text-accent transition-all"
+                className="text-bone/60 hover:text-gold transition-all"
                 aria-label={social.label}
               >
                 <Icon size={20} />

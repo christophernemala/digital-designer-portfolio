@@ -64,3 +64,21 @@ export const portfolioFiles = mysqlTable("portfolioFiles", {
 
 export type PortfolioFile = typeof portfolioFiles.$inferSelect;
 export type InsertPortfolioFile = typeof portfolioFiles.$inferInsert;
+
+/**
+ * Contact Leads Table
+ * Stores contact form submissions for lead generation
+ */
+export const contactLeads = mysqlTable("contactLeads", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  company: varchar("company", { length: 255 }),
+  message: text("message").notNull(),
+  status: mysqlEnum("status", ["new", "contacted", "qualified", "closed"]).default("new").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ContactLead = typeof contactLeads.$inferSelect;
+export type InsertContactLead = typeof contactLeads.$inferInsert;

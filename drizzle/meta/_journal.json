@@ -15,6 +15,13 @@
       "when": 1767193582482,
       "tag": "0001_legal_doctor_faustus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1767319903996,
+      "tag": "0002_reflective_aaron_stack",
+      "breakpoints": true
     }
   ]
 }

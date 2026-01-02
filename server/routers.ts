@@ -3,7 +3,8 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
-import { createPortfolioProject, uploadPortfolioFile, getProjectFiles } from "./db";
+import { createPortfolioProject, uploadPortfolioFile, getProjectFiles, createContactLead } from "./db";
+import { notifyOwner } from "./_core/notification";
 import { storagePut } from "./storage";
 import { nanoid } from "nanoid";
 
@@ -18,6 +19,38 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  leads: router({
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1, 'Name is required'),
+          email: z.string().email('Invalid email address'),
+          company: z.string().optional(),
+          message: z.string().min(10, 'Message must be at least 10 characters'),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          await createContactLead({
+            name: input.name,
+            email: input.email,
+            company: input.company || null,
+            message: input.message,
+          });
+
+          await notifyOwner({
+            title: `New Lead: ${input.name}`,
+            content: `Name: ${input.name}\nEmail: ${input.email}\nCompany: ${input.company || 'Not provided'}\n\nMessage:\n${input.message}`,
+          });
+
+          return { success: true };
+        } catch (error) {
+          console.error('Lead submission error:', error);
+          throw new Error('Failed to submit contact form');
+        }
+      }),
   }),
 
   portfolio: router({
