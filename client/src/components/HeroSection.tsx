@@ -112,7 +112,7 @@ export default function HeroSection() {
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl font-bold leading-tight text-bone"
+              className="text-5xl md:text-6xl font-bold leading-tight text-bone" style={{fontWeight: '600'}}
             >
               Finance intelligence for{' '}
               <span className="relative inline-block">
