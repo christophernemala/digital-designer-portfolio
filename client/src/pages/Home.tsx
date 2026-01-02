@@ -1,14 +1,19 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import PortfolioSection from '@/components/PortfolioSection';
+import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import { useAuth } from "@/_core/hooks/useAuth";
 
 /**
- * Home Page
+ * Home Page - Premium $56K Anime 3D Portfolio
  * LOCKED PALETTE: Blue Gold White Black Only
- * - ink background (near black)
- * - bone text (near white)
- * - gold and electric accents
+ * Features:
+ * - 3D floating elements with Three.js
+ * - Ultra-smooth anime-style animations
+ * - Interactive portfolio cards
+ * - Photo gallery with dynamic transitions
+ * - Contact form with lead generation
  */
 
 export default function Home() {
@@ -16,9 +21,11 @@ export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-ink text-bone">
+    <div className="min-h-screen bg-ink text-bone scroll-smooth">
       <Navigation />
       <HeroSection />
+      <PortfolioSection />
+      <AboutSection />
       <Footer />
     </div>
   );
