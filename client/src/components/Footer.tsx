@@ -117,7 +117,7 @@ export default function Footer() {
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-4">
+            <div className="space-y-4" style={{display: 'inline'}}>
               <motion.a
                 href="mailto:contact@christophernemala.com"
                 className="flex items-center gap-4 text-bone/70 hover:text-gold transition-colors group"
@@ -126,7 +126,7 @@ export default function Footer() {
                 <div className="w-12 h-12 glass rounded-lg flex items-center justify-center border border-gold/20 group-hover:border-gold/50 transition-colors">
                   <Mail size={20} className="text-gold" />
                 </div>
-                <span>contact@christophernemala.com</span>
+                <span>christophernemala@gmail.com</span>
               </motion.a>
 
               <motion.div
@@ -136,17 +136,17 @@ export default function Footer() {
                 <div className="w-12 h-12 glass rounded-lg flex items-center justify-center border border-gold/20">
                   <MapPin size={20} className="text-gold" />
                 </div>
-                <span>Available Worldwide</span>
+                <span style={{paddingTop: '3px'}}>Dubai, United Arab Emirates</span>
               </motion.div>
 
               <motion.div
                 className="flex items-center gap-4 text-bone/70"
-                whileHover={{ x: 5 }}
+                whileHover={{ x: 5 }} style={{marginTop: '5px'}}
               >
                 <div className="w-12 h-12 glass rounded-lg flex items-center justify-center border border-gold/20">
                   <Phone size={20} className="text-gold" />
                 </div>
-                <span>Schedule a Call</span>
+                <span style={{fontSize: '15px', fontWeight: '600'}}>+971-565839277</span>
               </motion.div>
             </div>
 

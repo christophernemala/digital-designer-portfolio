@@ -90,3 +90,9 @@
 - [x] Implement smooth scroll navigation
 - [x] Add parallax depth effects throughout
 - [x] Update content with AR/Collections/Finance focus
+
+
+## Visual Editor Updates
+- [x] Update Footer contact info (email, location, phone)
+- [x] Update HeroSection badge text
+- [x] Change Navigation motion effects and font styling

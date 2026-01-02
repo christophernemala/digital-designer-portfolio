@@ -167,7 +167,7 @@ export default function HeroSection() {
               <div className="glass px-5 py-2.5 rounded-full border border-gold/30 backdrop-blur-md inline-flex items-center gap-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-gold animate-pulse" />
                 <span className="text-gold text-sm font-semibold">Christopher Nemala</span>
-                <span className="text-bone/60 text-sm">AR, Collections, Finance Reporting</span>
+                <span className="text-bone/60 text-sm">Senior Executive – Receivables, Credit Control and Financial Reporting</span>
               </div>
             </motion.div>
 
