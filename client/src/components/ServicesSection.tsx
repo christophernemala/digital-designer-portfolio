@@ -198,13 +198,15 @@ export default function ServicesSection() {
                 </div>
 
                 {/* CTA */}
-                <motion.button
+                <motion.a
+                  href="#contact"
                   whileHover={{ x: 4 }}
                   className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold/10 border border-gold/30 text-gold font-semibold hover:bg-gold/20 hover:border-gold/50 transition-all duration-300"
+                  aria-label={`Inquire about ${service.title}`}
                 >
                   Inquire About This Service
                   <span className="text-lg">→</span>
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           ))}
